@@ -435,8 +435,52 @@
       </div>
     </div>
 
-    <!-- 2. Method -->
-    <h2>2. System Implementation & Method</h2>
+    <!-- 2. Literature Review & Paradigm Comparison -->
+    <h2>2. Literature Review & Paradigm Comparison</h2>
+    <p>
+      Automated software synthesis has historically been dominated by high-level source code generators. Early systems mapped natural language to template expressions. The scaling of large decoder language models enabled direct prompt-to-source-code translation (e.g., OpenAI Codex, DeepSeek Coder, LLaMA-Coder). In compiler research, deep networks have been trained to output compiler intermediate representations (LLVM-IR) or architecture-specific assembly code to assist compiler backends. 
+    </p>
+    <p>
+      However, all prior works require a secondary assembler and linking toolchain to produce executable binaries. In this work, we present a paradigm comparison highlighting how our model directly streams the final machine code payload:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Paradigm</th>
+          <th>Representative Works</th>
+          <th>Target Output Format</th>
+          <th>Build Pipeline Steps</th>
+          <th>OS & Linker Dependency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Prompt-to-Code</strong></td>
+          <td>Codex, DeepSeek, Qwen-Coder</td>
+          <td>High-level Source (C, C++, Rust)</td>
+          <td>Preprocess &rarr; Compile &rarr; Assemble &rarr; Link &rarr; Load</td>
+          <td>High (glibc, standard headers)</td>
+        </tr>
+        <tr>
+          <td><strong>Prompt-to-Assembly</strong></td>
+          <td>LLVM-IR models, Deep Assembler</td>
+          <td>Assembly Language (x86_64, ARM)</td>
+          <td>Assemble &rarr; Link &rarr; Load</td>
+          <td>Medium (Assembler, Linker)</td>
+        </tr>
+        <tr>
+          <td><strong>Prompt-to-Binary (Ours)</strong></td>
+          <td><strong>Direct Neural ELF Synthesis</strong></td>
+          <td>ELF64 Machine Code bytes (Hex)</td>
+          <td>Load Only (Immediate Execution)</td>
+          <td><strong>Zero</strong> (Bypasses toolchain entirely)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 3. System Implementation & Method -->
+    <h2>3. System Implementation & Method</h2>
     <p>
       To build a dataset of correct instruction streams, we constructed positive target samples using strict compiler optimization flags and custom assembly helpers:
     </p>
@@ -447,13 +491,13 @@
       </li>
     </ul>
 
-    <!-- 3. Futuristic Applications -->
-    <h2>3. Futuristic Applications</h2>
+    <!-- 4. Futuristic Applications -->
+    <h2>4. Futuristic Applications</h2>
     <p>
       Bypassing the compiler stack has major implications across several areas of advanced computing:
     </p>
 
-    <h3>3.1. Deep Space Exploration & Self-Healing Code</h3>
+    <h3>4.1. Deep Space Exploration & Self-Healing Code</h3>
     <p>
       Deep space probes (e.g., Voyager successors or Martian rovers) operate in severe radiation environments. A single high-energy cosmic ray can permanently damage silicon registers, disable specific CPU cores, or corrupt compiler software binaries stored on local drives. 
     </p>
@@ -461,18 +505,18 @@
       Under a direct prompt-to-binary paradigm, a local neural compiler model is integrated directly into the system's core recovery loop. When hardware damage is detected, the rover can run a self-diagnostic routine to discover the damaged memory addresses, defunct register areas, and active sensor pins. Using this configuration mapping as prompt context, the local model dynamically compiles a custom binary driver that relocates the execution pointer, structures a new register map, and continues operations using only the surviving physical parts. This enables autonomous resilience without needing support from Earth.
     </p>
 
-    <h3>3.2. Microsecond Latency Optimization in High-Frequency Trading</h3>
+    <h3>4.2. Microsecond Latency Optimization in High-Frequency Trading</h3>
     <p>
       In High-Frequency Trading (HFT), execution speed is critical. Traditional compilers optimize binaries using general code-reduction heuristics. A neural binary compiler can learn to generate hand-crafted-level raw machine instructions tailored to specific CPU cache lines, network interface buffers, and branch predictors. By directly writing machine bytes, the model skips standard linker bloat, yielding optimal pipeline execution.
     </p>
 
-    <h3>3.3. Reducing E-Waste & Programming Legacy Silicon</h3>
+    <h3>4.3. Reducing E-Waste & Programming Legacy Silicon</h3>
     <p>
       Millions of functional microcontrollers and legacy chips are discarded annually because their compiler toolchains, SDKs, and build dependencies are no longer supported. A neural binary compiler trained on raw instruction set sheets can act as a universal software bridge. Engineers can program legacy architectures using natural language descriptions, bypassing deprecated compilers and extending the lifespan of electronics.
     </p>
 
-    <!-- 4. Results & Capacity Limits -->
-    <h2>4. Results & Capacity Limits</h2>
+    <!-- 5. Results & Capacity Limits -->
+    <h2>5. Results & Capacity Limits</h2>
     <p>
       We evaluated the model on in-domain samples and measured token-level matching accuracy.
     </p>
