@@ -1,0 +1,28 @@
+# Python cache and virtual environment
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+
+# Large Datasets (regenerated via scripts)
+*.json
+*.jsonl
+
+# Exclude other adapter runs
+qwen_binary_generator_lora/
+qwen_binary_generator_lora_large/
+qwen_binary_generator_lora_overfit/
+
+# Exclude intermediate checkpoints (only keep the main final adapter)
+qwen_binary_generator_lora_generic/checkpoint-*/
+
+# Temporary build artifacts and executables
+*.o
+*.bin
+test_ood_*
+test_verify_*
+generated_binary
+tmp_test/
+*.log
