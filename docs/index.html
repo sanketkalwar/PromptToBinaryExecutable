@@ -548,7 +548,9 @@
           "Mapping variables and constraints to x86_64 registers...",
           "Emitting ELF64 headers and .text instruction segments...",
           "Compilation complete. Executable size: 1,120 bytes."
-        ]
+        ],
+        runInput: "45 * 5",
+        runOutput: "225"
       },
       {
         prompt: "String Reverse",
@@ -558,7 +560,9 @@
           "Allocating memory buffer offsets and loop limits...",
           "Emitting machine code for stdin-to-stdout reverse...",
           "Compilation complete. Executable size: 1,104 bytes."
-        ]
+        ],
+        runInput: "neuralcompiler",
+        runOutput: "relipmoclaruen"
       },
       {
         prompt: "Grid Snake Simulator",
@@ -568,7 +572,9 @@
           "Setting up wrapping coordinates modulo-5 assembly maps...",
           "Emitting instruction segments for R, L, U, D moves...",
           "Compilation complete. Executable size: 1,152 bytes."
-        ]
+        ],
+        runInput: "1 1 R D R R",
+        runOutput: "Final position: (2, 4)"
       },
       {
         prompt: "24-bit BMP Art Renderer",
@@ -578,7 +584,9 @@
           "Structuring header offsets (0x12 for width, 0x16 for height)...",
           "Emitting grayscale luminance mapping instructions...",
           "Compilation complete. Executable size: 1,208 bytes."
-        ]
+        ],
+        runInput: "[Raw BMP image payload]",
+        runOutput: "  ..---===***###%%%%@@@@\n  ..---===***###%%%%@@@@\n  ..---===***###%%%%@@@@"
       }
     ];
 
@@ -612,15 +620,24 @@
       printLine(`$ python3 inference.py --prompt "${preset.prompt}"`, 'line-cmd');
 
       for (const step of preset.steps) {
-        await new Promise(r => setTimeout(r, 600));
+        await new Promise(r => setTimeout(r, 500));
         printLine(step);
       }
 
-      await new Promise(r => setTimeout(r, 400));
+      await new Promise(r => setTimeout(r, 300));
       printLine(`Generated HEX payload:\n${preset.hex}`, 'line-hex');
 
-      await new Promise(r => setTimeout(r, 400));
+      await new Promise(r => setTimeout(r, 300));
       printLine(`[SUCCESS] Binary written to ./build_out. Executable exits with code 0.`, 'line-ok');
+
+      await new Promise(r => setTimeout(r, 600));
+      printLine(`$ ./build_out`, 'line-cmd');
+
+      await new Promise(r => setTimeout(r, 500));
+      printLine(`[stdin] input: ${preset.runInput}`, 'line-sys');
+
+      await new Promise(r => setTimeout(r, 600));
+      printLine(`[stdout] output:\n${preset.runOutput}`, 'line-ok');
     }
   </script>
 </body>
