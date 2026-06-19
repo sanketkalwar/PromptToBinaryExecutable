@@ -1,4 +1,4 @@
-# 🧠 Neural Compiler: Direct Prompt-to-Binary Synthesis
+# 🧠 Neural Compiler: Direct Prompt-to-Binary Synthesis (v1.0.0)
 
 An experimental project to fine-tune `Qwen/Qwen2.5-Coder-1.5B-Instruct` to act as an end-to-end compiler. Given a natural language programming prompt, the model directly outputs the compiled machine code of a stripped, executable ELF64 binary as a raw hexadecimal string—bypassing high-level language generation, assembly, and standard linker toolchains.
 
