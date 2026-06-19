@@ -2,7 +2,10 @@
 
 An experimental project to fine-tune `Qwen/Qwen2.5-Coder-1.5B-Instruct` to act as an end-to-end compiler. Given a natural language programming prompt, the model directly outputs the compiled machine code of a stripped, executable ELF64 binary as a raw hexadecimal string—bypassing high-level language generation, assembly, and standard linker toolchains.
 
+🔗 **Interactive Research & Project Page**: [https://sanketkalwar.github.io/PromptToBinaryExecutable/](https://sanketkalwar.github.io/PromptToBinaryExecutable/)
+
 ---
+
 
 ## ⚡ How is this different from "Prompt-to-Code"?
 
